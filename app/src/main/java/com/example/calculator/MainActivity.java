@@ -129,36 +129,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 update("+");
-//                Toast.makeText(MainActivity.this, "plus", Toast.LENGTH_SHORT).show();
             }
         });
         bminus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 update("-");
-//                Toast.makeText(MainActivity.this, "plus", Toast.LENGTH_SHORT).show();
             }
         });
         bdivided.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 update(":");
-//                Toast.makeText(MainActivity.this, "plus", Toast.LENGTH_SHORT).show();
             }
         });
         bmultiplied.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 update("*");
-//                Toast.makeText(MainActivity.this, "plus", Toast.LENGTH_SHORT).show();
             }
         });
         btotal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 calculateTotal();
-//                update("=");
-//                Toast.makeText(MainActivity.this, "total", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -172,7 +166,6 @@ public class MainActivity extends AppCompatActivity {
         }else {
             Toast.makeText(this, "Maximum number of digits reached", Toast.LENGTH_SHORT).show();
         }
-
     }
     private void clearNumber(){
         t1.setText("");
@@ -228,7 +221,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
             return;
         }
-
         t2.setText("= " + total);
     }
 }
