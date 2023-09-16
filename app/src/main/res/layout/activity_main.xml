@@ -115,6 +115,7 @@
         android:id="@+id/buttontotal"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:backgroundTint="#EDA3A3"
         android:text="="
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -157,6 +158,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="116dp"
+        android:backgroundTint="#EDA3A3"
         android:text="+"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -260,6 +262,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="120dp"
+        android:backgroundTint="#EDA3A3"
         android:text="-"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -272,6 +275,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="12dp"
+        android:backgroundTint="#EDA3A3"
         android:text="x"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -283,11 +287,36 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="8dp"
+        android:backgroundTint="#EDA3A3"
         android:text=":"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button8"
         app:layout_constraintTop_toBottomOf="@+id/buttonmultiplied" />
+
+    <Button
+        android:id="@+id/buttonpercentage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#EDA3A3"
+        android:text="%"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button9"
+        app:layout_constraintTop_toBottomOf="@+id/buttondivided" />
+
+    <Button
+        android:id="@+id/buttoncoma"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:backgroundTint="#EDA3A3"
+        android:text="."
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttontotal"
+        app:layout_constraintTop_toBottomOf="@+id/buttonpercentage" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

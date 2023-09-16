@@ -3,6 +3,8 @@ package com.example.calculator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -10,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, bac, bc, bplus, bminus, bmultiplied, bdivided, btotal;
+    Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, bac, bc, bplus, bminus, bmultiplied, bdivided, btotal, bpercentage, bcoma;
     TextView t1, t2;
     ImageView i1;
     private int Counter;
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         bmultiplied = findViewById(R.id.buttonmultiplied);
         bdivided = findViewById(R.id.buttondivided);
         btotal = findViewById(R.id.buttontotal);
+        bpercentage = findViewById(R.id.buttonpercentage);
+        bcoma = findViewById(R.id.buttoncoma);
         t1 = findViewById(R.id.textView1);
         t2 = findViewById(R.id.textViewtotal);
         i1 = findViewById(R.id.iconImageView);
@@ -155,6 +159,19 @@ public class MainActivity extends AppCompatActivity {
                 calculateTotal();
             }
         });
+        bpercentage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                update("%");
+//                calculatePercentage();
+            }
+        });
+        bcoma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                update(".");
+            }
+        });
     }
     private void update(String newnumber){
         String number = t1.getText().toString();
@@ -171,6 +188,8 @@ public class MainActivity extends AppCompatActivity {
         t1.setText("");
         t2.setText("");
         Counter = 0;
+        bc.setVisibility(View.INVISIBLE);
+        i1.setVisibility(View.INVISIBLE);
     }
     private void deleteLastCharacter() {
         String currentText = t1.getText().toString();
@@ -186,17 +205,17 @@ public class MainActivity extends AppCompatActivity {
     private void calculateTotal() {
         String expression = t1.getText().toString();
         String[] parts;
-        int total = 0;
+        double total = 0;
 
         if (expression.contains("+")) {
             parts = expression.split("\\+");
             for (String part : parts) {
-                total += Integer.parseInt(part.trim());
+                total += Double.parseDouble(part.trim());
             }
         } else if (expression.contains("-")) {
             parts = expression.split("-");
             if (parts.length == 2) {
-                total = Integer.parseInt(parts[0].trim()) - Integer.parseInt(parts[1].trim());
+                total = Double.parseDouble(parts[0].trim()) - Double.parseDouble(parts[1].trim());
             } else {
                 Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
                 return;
@@ -207,20 +226,33 @@ public class MainActivity extends AppCompatActivity {
                 if (total == 0) {
                     total = 1; // Initialize with 1 for multiplication
                 }
-                total *= Integer.parseInt(part.trim());
+                total *= Double.parseDouble(part.trim());
             }
         } else if (expression.contains(":")) {
             parts = expression.split(":");
             if (parts.length == 2) {
-                total = Integer.parseInt(parts[0].trim()) / Integer.parseInt(parts[1].trim());
+                total = Double.parseDouble(parts[0].trim()) / Double.parseDouble(parts[1].trim());
             } else {
                 Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        } else if (expression.contains("%")) {
+            parts = expression.split("%");
+            if (parts.length == 2) {
+                total = (Double.parseDouble(parts[0].trim()) * Double.parseDouble(parts[1].trim())) / 100;
+            } else {
+                Toast.makeText(this, "Invalid input for percentage", Toast.LENGTH_SHORT).show();
                 return;
             }
         } else {
             Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
             return;
         }
-        t2.setText("= " + total);
+        if(total % 1 == 0){
+            t2.setText("= " + (int) total);
+        }else {
+            t2.setText("= " + total);
+        }
     }
+
 }
